@@ -112,7 +112,9 @@ public class ProfileActivity  extends BaseActivity {
         View.OnClickListener settingListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(ProfileActivity.this, SettingActivity.class);
+                i.putExtra(IntentTag.USER, user);
+                startActivity(i);
             }
         };
 
@@ -202,10 +204,10 @@ public class ProfileActivity  extends BaseActivity {
 
                     if (user.isMe()) {
                         followButton.setVisibility(View.INVISIBLE);
-                        settingButton.setVisibility(View.INVISIBLE);
-                        purchaseListButton.setVisibility(View.INVISIBLE);
                     } else {
                         fetchIsFollow();
+                        settingButton.setVisibility(View.INVISIBLE);
+                        purchaseListButton.setVisibility(View.INVISIBLE);
                     }
 
                     fetchFollows();

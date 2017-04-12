@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:background="@drawable/shobit"
+            android:gravity="left|center_vertical" />
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+    <FrameLayout
+        android:id="@+id/wrapper_setting_delivery"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="배송정보 변경"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/grey_200"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="메세지 알림"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_message_alram"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="댓글 알림"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_reply_alram"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="피드 알림"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_feed_alram"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/grey_200"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="카카오톡 로그인"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_login_kakao"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="Facebook 로그인"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_login_facebook"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="Instagram 로그인"
+            android:gravity="center_vertical"/>
+        <Switch
+            android:id="@+id/switch_login_instagram"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/grey_200"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:id="@+id/wrapper_termofuse"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="이용약관"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:id="@+id/wrapper_privacy"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="개인정보보호정책"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:id="@+id/wrapper_help"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="도움말"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:id="@+id/wrapper_logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="로그아웃"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/grey_200"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <FrameLayout
+        android:id="@+id/wrapper_signout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="탈퇴요청"
+            android:gravity="center_vertical"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+</LinearLayout>

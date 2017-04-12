@@ -60,6 +60,10 @@
         <activity android:name=".Activity.ShobitAlertActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AddressActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

@@ -24,6 +24,7 @@ import co.treasureisle.shobit.Adapter.FeedTabPagerAdapter;
 import co.treasureisle.shobit.Adapter.HomeTabPagerAdapter;
 import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Constant.PrefTag;
+import co.treasureisle.shobit.Constant.RequestCode;
 import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Utils;
@@ -175,15 +176,17 @@ public class FeedActivity extends BaseActivity {
     }
 
     private void showUploadPopup(){
-        SharedPreferences pref = Utils.getPrefs(this);
+        SharedPreferences pref = Utils.getPrefs(FeedActivity.this);
 
         userId = pref.getString(PrefTag.USER_ID, null);
         if (userId == null) {
-            startActivityForResult(new Intent(this, LoginPopupActivity.class), 0);
+            startActivityForResult(new Intent(FeedActivity.this, LoginPopupActivity.class), RequestCode.REQ_LOGIN);
             return;
         }
 
-        final PopupWindow popup = new PopupWindow(uploadButton);
+        FrameLayout layoutPopupLocation = (FrameLayout) findViewById(R.id.layout_popup_location);
+
+        final PopupWindow popup = new PopupWindow(layoutPopupLocation);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popup_upload, null);
 
@@ -233,7 +236,7 @@ public class FeedActivity extends BaseActivity {
         popup.setBackgroundDrawable(new BitmapDrawable());
 
         int[] location = new int[2];
-        uploadButton.getLocationOnScreen(location);
+        layoutPopupLocation.getLocationOnScreen(location);
 
         popup.showAtLocation(uploadButton, Gravity.NO_GRAVITY, location[0], location[1]);
     }
