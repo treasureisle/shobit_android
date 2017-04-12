@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<fr.castorflex.android.circularprogressbar.CircularProgressBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:indeterminate="true"
+    android:layout_centerInParent="true"
+    style="@style/CircularThemeProgressBar" />

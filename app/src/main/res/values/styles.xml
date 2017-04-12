@@ -1,0 +1,186 @@
+<resources>
+
+    <style name="Theme" parent="android:Theme">
+    </style>
+
+    <style name="Theme.Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowBackground">@drawable/transparent_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorForeground">#fff</item>
+    </style>
+
+    <style name="Theme.AppCompat.Translucent">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:backgroundDimAmount">0.9</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="EditSubtitleTextView">
+        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="EditContentTextView">
+        <item name="android:textColor">@color/grey_400</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="GluviEditText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColorHint">@color/grey_500</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="GluviSwitch">
+        <item name="colorControlActivated">@color/dark_primary_color</item>
+    </style>
+
+    <style name="SettingsTitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="SettingsSubtitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="SettingsText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/grey_500</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="SettingsTitleWrapper">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="SettingSubWrapper">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="SettingSubWrapper.Switch">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="SettingsDivider">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/grey_300</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="CircularThemeProgressBar" parent="android:Widget.Holo.ProgressBar">
+        <item name="cpb_color">@color/primary_color</item>
+        <item name="cpb_stroke_width">@dimen/cpb_default_stroke_width</item>
+        <item name="cpb_min_sweep_angle">@integer/cpb_default_min_sweep_angle</item>
+        <item name="cpb_max_sweep_angle">@integer/cpb_default_max_sweep_angle</item>
+        <item name="cpb_sweep_speed">@string/cpb_default_sweep_speed</item>
+        <item name="cpb_rotation_speed">@string/cpb_default_rotation_speed</item>
+    </style>
+
+    <style name="CircularThemeProgressBar.White">
+        <item name="cpb_color">@color/white</item>
+    </style>
+
+    <style name="PreviewImageButton">
+        <item name="android:layout_width">34dp</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="GluviCardFooterTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GluviCardFooterIcon">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="ProfileMetaWrapper">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ProfileMetaTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/grey_800</item>
+    </style>
+
+    <style name="floatlabelededittext">
+        <item name="android:textColor">@color/grey_500</item>
+    </style>
+
+    <style name="RegisterEditText">
+        <item name="android:textColorHint">@color/grey_500</item>
+    </style>
+
+    <style name="RegisterErrorMsgTextView">
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/red_500</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="ViewActivityButton">
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="ViewActivityText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">29sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
+

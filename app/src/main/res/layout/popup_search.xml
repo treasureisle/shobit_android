@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn_search_title"
+        android:layout_width="123dp"
+        android:layout_height="28dp"
+        android:text="제목검색"
+        android:background="@drawable/btn_popup_menu_top"/>
+    <Button
+        android:id="@+id/btn_search_user"
+        android:layout_width="123dp"
+        android:layout_height="28dp"
+        android:text="사용자검색"
+        android:background="@drawable/btn_popup_menu_middle"/>
+    <Button
+        android:id="@+id/btn_search_hashtag"
+        android:layout_width="123dp"
+        android:layout_height="28dp"
+        android:text="해시태그검색"
+        android:background="@drawable/btn_popup_menu_bottom"/>
+
+</LinearLayout>

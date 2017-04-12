@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/wrapper">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/wrapper_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v4.widget.Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/img_sellerpic"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"/>
+
+            <co.treasureisle.shobit.View.RoundedNetworkImageView
+                android:id="@+id/profile_thumbnail"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/image_list"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="0dp" />
+
+        </FrameLayout>
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:id="@+id/detail_buttons"
+        android:layout_gravity="center">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_feed_cart"
+            android:layout_width="43dp"
+            android:layout_height="46dp"
+            android:background="@drawable/btn_feed_cart"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless" />
+
+        <Button
+            android:layout_width="43dp"
+            android:layout_height="46dp"
+            android:id="@+id/btn_feed_like"
+            android:background="@drawable/btn_feed_like"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless" />
+
+        <Button
+            android:layout_width="43dp"
+            android:layout_height="46dp"
+            android:id="@+id/btn_feed_reply"
+            android:background="@drawable/btn_feed_reply"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless" />
+
+        <Button
+            android:layout_width="43dp"
+            android:layout_height="46dp"
+            android:id="@+id/btn_feed_share"
+            android:background="@drawable/btn_feed_share"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/like_image_button"
+            android:layout_width="23dp"
+            android:layout_height="19dp"
+            android:background="@drawable/img_littleheart"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
+        <TextView
+            android:id="@+id/like_text"
+            android:layout_width="80dp"
+            android:layout_height="19dp"
+            android:text="0"/>
+        <Button
+            android:id="@+id/reply_image_button"
+            android:layout_width="23dp"
+            android:layout_height="19dp"
+            android:background="@drawable/img_comment"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
+        <TextView
+            android:id="@+id/reply_text"
+            android:layout_width="80dp"
+            android:layout_height="19dp"
+            android:text="0"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/feed_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/feed_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginRight="10dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+</LinearLayout>

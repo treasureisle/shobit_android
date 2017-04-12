@@ -1,0 +1,88 @@
+<co.treasureisle.shobit.View.RelativeLayoutDetectSoftKeyBoard xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/replyHeaderAllWrapper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.treasureisle.shobit.Activity.ReplyActivity"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <include layout="@layout/loading_layout" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <Space
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="13"
+                android:gravity="left|center_vertical" />
+
+            <Button
+                style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="12"
+                android:background="@drawable/shobit"
+                android:gravity="left|center_vertical" />
+
+            <Space
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="13"
+                android:gravity="right|center_vertical" />
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_300"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/replyWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/reply"
+            android:layout_gravity="center_vertical"
+            android:hint="댓글을 입력해주세요"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="5"
+            android:textColor="@color/grey_800"
+            android:textColorHint="@color/grey_500" />
+
+        <Button
+            android:id="@+id/replyBtn"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_above="@+id/replyWrapper"
+        android:layout_marginTop="@dimen/list_height_56"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="#00000000" />
+
+</co.treasureisle.shobit.View.RelativeLayoutDetectSoftKeyBoard>

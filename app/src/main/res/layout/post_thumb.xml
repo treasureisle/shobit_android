@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp">
+
+    <co.treasureisle.shobit.Layout.RoundedCornerLayout
+        android:id="@+id/wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/post_thumb"
+            android:layout_width="130dp"
+            android:layout_height="172dp"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:id="@+id/img_flag"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="120dp"
+            android:background="@color/white"
+            />
+
+        <FrameLayout
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="122dp">
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/post_title"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text=""/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <TextView
+                        android:id="@+id/ratio"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red_900"
+                        android:textStyle="bold"
+                        android:text="70%"/>
+                    <TextView
+                        android:id="@+id/post_purchase_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text=""/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+
+
+    </co.treasureisle.shobit.Layout.RoundedCornerLayout>
+</FrameLayout>

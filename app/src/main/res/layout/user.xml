@@ -1,0 +1,49 @@
+<LinearLayout android:id="@+id/wrapper_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v4.widget.Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/img_sellerpic"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"/>
+
+        <co.treasureisle.shobit.View.RoundedNetworkImageView
+            android:id="@+id/profile_thumbnail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/usercomment_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+</LinearLayout>

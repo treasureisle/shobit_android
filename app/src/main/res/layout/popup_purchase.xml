@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_detailoption"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"/>
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="제목"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:paddingLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <Spinner
+                android:id="@+id/spnr_colorsize"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:spinnerMode="dialog"/>
+            <Spinner
+                android:id="@+id/spnr_amount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:spinnerMode="dialog"/>
+            <Button
+                android:id="@+id/btn_put"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="담기"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

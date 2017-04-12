@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:background="@drawable/shobit"
+            android:gravity="left|center_vertical" />
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="107dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="107dp"
+                    android:orientation="vertical">
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="97dp"
+                        android:orientation="horizontal">
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+                        <ImageButton
+                            android:id="@+id/btn_img1"
+                            android:layout_width="77dp"
+                            android:layout_height="87dp"
+                            android:scaleType="fitXY"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/img_photoupload"/>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+                        <ImageButton
+                            android:id="@+id/btn_img2"
+                            android:layout_width="77dp"
+                            android:layout_height="87dp"
+                            android:scaleType="fitXY"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/img_photoupload"/>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+                        <ImageButton
+                            android:id="@+id/btn_img3"
+                            android:layout_width="77dp"
+                            android:layout_height="87dp"
+                            android:scaleType="fitXY"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/img_photoupload"/>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+                        <ImageButton
+                            android:id="@+id/btn_img4"
+                            android:layout_width="77dp"
+                            android:layout_height="87dp"
+                            android:scaleType="fitXY"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/img_photoupload"/>
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+                        <ImageButton
+                            android:id="@+id/btn_img5"
+                            android:layout_width="77dp"
+                            android:layout_height="87dp"
+                            android:scaleType="fitXY"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/img_photoupload"/>
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="제목" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+
+                <EditText
+                    android:id="@+id/title_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white" />
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="브랜드" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+
+                <EditText
+                    android:id="@+id/brand_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white" />
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="제품명" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/product_name_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="원가" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/origin_price_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="구매가" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/purchase_price_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="구대비" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/fee_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="배송비" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/delivery_price"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+
+            <LinearLayout
+                android:id="@+id/wrapper_colorsize"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="컬러/사이즈" />
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_300"/>
+                    <EditText
+                        android:id="@+id/color_size_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="수량" />
+
+                    <EditText
+                        android:id="@+id/amount_text"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:background="@color/white" />
+                    <Button
+                        android:id="@+id/btn_color_size_add"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_addmore"
+                        android:layout_gravity="center_vertical"
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
+                </LinearLayout>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="구매국가" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/region_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+
+            <LinearLayout
+            android:id="@+id/wrapper_hashtag"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="해시태그" />
+                    <FrameLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_300"/>
+                    <EditText
+                        android:id="@+id/hashtag_text"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"/>
+                    <Button
+                        android:id="@+id/btn_hashtag_add"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/btn_addmore"
+                        android:layout_gravity="center_vertical"
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
+                </LinearLayout>
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="제품설명" />
+                <FrameLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_300"/>
+                <EditText
+                    android:id="@+id/text_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/btn_uploadbig"/>
+</LinearLayout>

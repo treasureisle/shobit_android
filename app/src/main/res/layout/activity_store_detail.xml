@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/title_bar"
+        android:layout_height="?attr/actionBarSize">
+
+        <Button
+            android:id="@+id/btn_notification"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_notification_nor"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:layout_height="match_parent"
+            android:background="@drawable/shobit"
+            android:layout_width="0dp"
+            android:layout_weight="12"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_search_nor"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/post_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:id="@+id/buttons">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/homebutton"
+            android:layout_weight="1"
+            android:elevation="5dp"
+            android:background="@drawable/btn_home_nor" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedbutton"
+            android:layout_weight="1"
+            android:background="@drawable/btn_feed_nor" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadbutton"
+            android:layout_weight="1"
+            android:background="@drawable/btn_home_upload_nor" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cartbutton"
+            android:layout_weight="1"
+            android:background="@drawable/btn_cart_nor" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/profilebutton"
+            android:layout_weight="1"
+            android:background="@drawable/btn_profile_nor" />
+
+    </LinearLayout>
+
+</LinearLayout>

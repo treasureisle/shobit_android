@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/white">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/title_bar"
+        android:layout_height="?attr/actionBarSize">
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:layout_height="match_parent"
+            android:background="@drawable/shobit"
+            android:layout_width="0dp"
+            android:layout_weight="12"
+            android:gravity="left|center_vertical"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless" />
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/shobit_grey"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <co.treasureisle.shobit.View.RoundedNetworkImageView
+            android:id="@+id/img_profile_thumbnail"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/text_email"
+        android:layout_width="274dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/img_signin_text"
+        android:hint="이메일"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <EditText
+        android:id="@+id/text_password"
+        android:layout_width="274dp"
+        android:layout_height="38dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/img_signin_text"
+        android:hint="비밀번호"
+        android:inputType="textPassword" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <EditText
+        android:id="@+id/text_confirm"
+        android:layout_width="274dp"
+        android:layout_height="38dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/img_signin_text"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <EditText
+        android:id="@+id/text_nickname"
+        android:layout_width="274dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:background="@drawable/img_signin_text"
+        android:hint="닉네임"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:layout_width="274dp"
+        android:layout_height="38dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="가입 완료"
+        android:background="@drawable/btn_login"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="co.treasureisle.shobit" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.FeedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.DetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.LoginPopupActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Transparent"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.UploadActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ReplyActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SearchPostsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SearchUserActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SubStoreActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SigninActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ShobitAlertActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>
