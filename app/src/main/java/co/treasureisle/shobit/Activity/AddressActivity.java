@@ -21,11 +21,12 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,13 +34,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 
 import co.treasureisle.shobit.Constant.IntentTag;
-import co.treasureisle.shobit.Model.ColorSize;
 import co.treasureisle.shobit.Model.User;
 import co.treasureisle.shobit.Model.UserDetail;
 import co.treasureisle.shobit.R;
+import co.treasureisle.shobit.Request.MultipartRequest;
 import co.treasureisle.shobit.Request.ShobitRequest;
+import co.treasureisle.shobit.Utils;
 import co.treasureisle.shobit.View.RoundedNetworkImageView;
 import co.treasureisle.shobit.VolleySingleTon;
 
@@ -99,14 +102,16 @@ public class AddressActivity extends BaseActivity{
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(AddressActivity.this, PasswordPopupActivity.class);
+                i.putExtra(IntentTag.USER, user);
+                startActivity(i);
             }
         });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                saveAddress();
             }
         });
 
@@ -114,13 +119,13 @@ public class AddressActivity extends BaseActivity{
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    UserDetail userDetail = new UserDetail(response.getJSONObject("userDetail"));
+                    UserDetail userDetail = new UserDetail(response.getJSONObject("user_detail"));
 
-                    if (userDetail.getName() != null) { textName.setText(userDetail.getName()); }
+                    if (!(Utils.isNullString(userDetail.getName()))) { textName.setText(userDetail.getName()); }
                     if (userDetail.getZipcode() != 0) { textPostalCode.setText(String.valueOf(userDetail.getZipcode())); }
-                    if (userDetail.getAddress1() != null) { textAddress.setText(userDetail.getAddress1()); }
-                    if (userDetail.getAddress2() != null) { textAddressDetail.setText(userDetail.getAddress2()); }
-                    if (userDetail.getPhone() != null) { textPhone.setText(userDetail.getPhone()); }
+                    if (!(Utils.isNullString(userDetail.getAddress1()))) { textAddress.setText(userDetail.getAddress1()); }
+                    if (!(Utils.isNullString(userDetail.getAddress2()))) { textAddressDetail.setText(userDetail.getAddress2()); }
+                    if (!(Utils.isNullString(userDetail.getPhone()))) { textPhone.setText(userDetail.getPhone()); }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -276,5 +281,56 @@ public class AddressActivity extends BaseActivity{
                 }
             }
         }
+    }
+
+    public void saveAddress() {
+        HashMap<String,String> params = new HashMap<>();
+        HashMap<String,File> fileParams = new HashMap<>();
+
+        if (imgData != null){
+            fileParams.put("profile_thumb", imgData);
+        } else {
+            Log.e("TAG", "imgData null!");
+        }
+
+        if(isEmpty(textName) || isEmpty(textPostalCode) || isEmpty(textAddress) || isEmpty(textAddressDetail) || isEmpty(textPhone)) {
+            Utils.showToast(this, "완료되지 않은 항목이 존재합니다");
+            return;
+        }
+
+        params.put("name", textName.getText().toString());
+        params.put("zipcode", textPostalCode.getText().toString());
+        params.put("address1", textAddress.getText().toString());
+        params.put("address2", textAddressDetail.getText().toString());
+        params.put("phone", textPhone.getText().toString());
+
+        MultipartRequest req = new MultipartRequest(this, com.android.volley.Request.Method.POST, "/user_detail/" + user.getId(), params, fileParams,
+                new com.android.volley.Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Utils.showToast(AddressActivity.this, "저장되었습니다.");
+                        finish();
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error != null) {
+                    if (error.networkResponse != null) {
+                        Log.e(TAG, error.networkResponse.toString());
+                    }
+                }
+            }
+        });
+
+
+        VolleySingleTon.getInstance(this).addToRequestQueue(req, new DefaultRetryPolicy(
+                5 * 60 * 1000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    }
+
+    private boolean isEmpty(EditText et) {
+        return et.getText().toString().trim().length() == 0;
     }
 }

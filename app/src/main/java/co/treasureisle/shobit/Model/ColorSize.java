@@ -28,6 +28,11 @@ public class ColorSize implements Parcelable {
         }
     };
 
+    public ColorSize(String name, int available) {
+        this.name = name;
+        this.available = available;
+    }
+
     public ColorSize(JSONObject o) {
         try {
             setId(o.getInt("id"));

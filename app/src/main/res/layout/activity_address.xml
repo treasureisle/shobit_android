@@ -150,6 +150,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:text="비밀 번호 변경하기"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:background="@color/white"/>
 
     <Space
