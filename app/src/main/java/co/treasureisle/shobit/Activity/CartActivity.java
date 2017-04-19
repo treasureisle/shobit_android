@@ -25,6 +25,8 @@ import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.RecyclerItemClickListener;
 import co.treasureisle.shobit.Request.ShobitRequest;
+import co.treasureisle.shobit.Utils;
+import co.treasureisle.shobit.ViewHolder.CartViewHolder;
 import co.treasureisle.shobit.VolleySingleTon;
 
 /**
@@ -37,17 +39,18 @@ public class CartActivity extends BaseActivity {
     private Button btnPurchaseAll;
     private RecyclerView listBasket;
     private CartAdapter adapter;
-    private TextView textNumSelectedItems;
-    private TextView textTotalPrice;
+    public TextView textNumSelectedItems;
+    public TextView textTotalPrice;
     private Button btnSelectAll;
     private Button btnDeleteItem;
     private Button btnPurchaseItem;
 
-    int numSelectedItems = 0;
-    int numTotalPrice = 0;
-    boolean [] isSelecteidItem;
+    public int numSelectedItems = 0;
+    public int numTotalPrice = 0;
+    public int [] itemPrice;
+    public boolean [] isSelecteidItem;
 
-    private ArrayList<Basket> baskets = new ArrayList<>();
+    public ArrayList<Basket> baskets = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,13 @@ public class CartActivity extends BaseActivity {
         btnDeleteItem = (Button)findViewById(R.id.btn_delete_item);
         btnPurchaseItem = (Button)findViewById(R.id.btn_purchase_item);
 
+        btnSelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAll();
+            }
+        });
+
 
         btnPurchaseAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,33 +83,8 @@ public class CartActivity extends BaseActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         listBasket.setLayoutManager(layoutManager);
         adapter = new CartAdapter(this, baskets);
+        listBasket.setItemViewCacheSize(30);
         listBasket.setAdapter(adapter);
-
-        listBasket.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                CheckBox c = (CheckBox) view.findViewById(R.id.chk_item);
-                Spinner spnrColorSize = (Spinner) view.findViewById(R.id.spnr_colorsize);
-                Spinner spnrAmount = (Spinner) view.findViewById(R.id.spnr_amount);
-
-                if (c.isChecked() && !isSelecteidItem[position]) {
-                    isSelecteidItem[position] = true;
-                    numSelectedItems++;
-                    Post selectedItem = baskets.get(position).getPost();
-                    int itemPrice = selectedItem.getPurchasePrice() + selectedItem.getFee();
-                    numTotalPrice+=(spnrAmount.getSelectedItemPosition() + 1) * itemPrice;
-
-
-                } else if (!(c.isChecked()) && isSelecteidItem[position]){
-                    isSelecteidItem[position] = false;
-                    numSelectedItems--;
-                    Post selectedItem = baskets.get(position).getPost();
-                    int itemPrice = selectedItem.getPurchasePrice() + selectedItem.getFee();
-                    numTotalPrice-=(spnrAmount.getSelectedItemPosition() + 1) * itemPrice;
-                }
-
-            }
-        }));
 
         getBaskets();
 
@@ -115,6 +100,8 @@ public class CartActivity extends BaseActivity {
                     baskets.clear();
                     isSelecteidItem = null;
                     isSelecteidItem = new boolean[basketArray.length()];
+                    itemPrice = null;
+                    itemPrice = new int[basketArray.length()];
 
                     for (int i = 0; i < basketArray.length(); i++) {
                         Basket basket = new Basket(basketArray.getJSONObject(i));
@@ -128,5 +115,31 @@ public class CartActivity extends BaseActivity {
         });
 
         VolleySingleTon.getInstance(this).addToRequestQueue(req);
+    }
+
+    private void checkAll() {
+        boolean isAllSelected = true;
+        for (int i=0; i<baskets.size(); i++) {
+            if (!isSelecteidItem[i]) {
+                isAllSelected = false;
+            }
+        }
+
+        if (isAllSelected) {
+            for (int i=0; i<baskets.size(); i++) {
+                isSelecteidItem[i] = false;
+                numSelectedItems = 0;
+                textNumSelectedItems.setText("0 아이템");
+            }
+        } else {
+            for (int i=0; i<baskets.size(); i++) {
+                isSelecteidItem[i] = true;
+                numSelectedItems = baskets.size();
+                textNumSelectedItems.setText(baskets.size() + " 아이템");
+            }
+        }
+
+        listBasket.getAdapter().notifyDataSetChanged();
+
     }
 }

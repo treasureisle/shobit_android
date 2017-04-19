@@ -127,7 +127,7 @@ public class ReplyActivity extends BaseActivity implements RelativeLayoutDetectS
                     HashMap<String,String> params = new HashMap<>();
 
                     params.put("text", replyText.getText().toString());
-                    if (parentId != 0 ) params.put("parent_id", parentId + "");
+                    params.put("parent_id", parentId + "");
 
                     MultipartRequest req = new MultipartRequest(ReplyActivity.this, com.android.volley.Request.Method.POST, replyPostUrl, params, null,
                             new com.android.volley.Response.Listener<JSONObject>() {

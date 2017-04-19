@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import co.treasureisle.shobit.Activity.CartActivity;
 import co.treasureisle.shobit.Model.Basket;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.ViewHolder.CartViewHolder;
@@ -19,10 +20,10 @@ import co.treasureisle.shobit.ViewHolder.CartViewHolder;
 public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = DetailImageAdapter.class.getSimpleName();
 
-    private Activity mActivity;
+    private CartActivity mActivity;
     private ArrayList<Basket> baskets;
 
-    public CartAdapter(Activity activity, ArrayList<Basket> baskets) {
+    public CartAdapter(CartActivity activity, ArrayList<Basket> baskets) {
         this.mActivity = activity;
         this.baskets = baskets;
     }
@@ -37,7 +38,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CartViewHolder) {
-            ((CartViewHolder) holder).onBind(mActivity, baskets.get(position));
+            ((CartViewHolder) holder).onBind(mActivity, baskets.get(position), position);
         }
     }
 

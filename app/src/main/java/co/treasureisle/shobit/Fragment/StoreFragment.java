@@ -196,7 +196,7 @@ public class StoreFragment extends Fragment{
 
                     EventPagerAdapter pagerAdapter = new EventPagerAdapter(activity.getSupportFragmentManager(), events);
                     pagerEvent.setAdapter(pagerAdapter);
-                    pagerEvent.setOffscreenPageLimit(4);
+                    pagerEvent.setOffscreenPageLimit(5);
 
                     textEditorsPick.setText(store.getEditorsPickTitle());
                     textTodaySeller.setText(store.getTodaySellerTitle());

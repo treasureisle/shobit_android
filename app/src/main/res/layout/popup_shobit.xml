@@ -24,8 +24,11 @@
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
+                android:textSize="16sp"
                 android:minWidth="200dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@color/white"/>
 
             <FrameLayout
@@ -35,7 +38,9 @@
             <TextView
                 android:id="@id/text_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:minWidth="200dp"
                 android:background="@color/white"/>
             <FrameLayout
@@ -52,8 +57,9 @@
                 <Button
                     android:id="@+id/btn_cancle"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
                 <FrameLayout
                     android:layout_width="1dp"
@@ -62,8 +68,9 @@
                 <Button
                     android:id="@+id/btn_ok"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     style="@android:style/Widget.DeviceDefault.Button.Borderless"/>
             </LinearLayout>
             <FrameLayout

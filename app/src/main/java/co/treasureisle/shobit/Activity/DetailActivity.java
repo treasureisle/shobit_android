@@ -349,6 +349,8 @@ public class DetailActivity extends BaseActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray postArray = response.getJSONArray("color_sizes");
+                    colorSizes.clear();
+                    colorSizeNames.clear();
 
                     for (int i = 0; i < postArray.length(); i++) {
                         ColorSize colorSize = new ColorSize(postArray.getJSONObject(i));
