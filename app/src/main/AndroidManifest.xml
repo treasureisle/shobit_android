@@ -67,6 +67,12 @@
         <activity android:name=".Activity.PasswordPopupActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.NotificationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.MessageListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.MessageActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 
