@@ -76,12 +76,12 @@ public class ShobitAlertActivity extends BaseActivity {
     }
 
     public void onOk(){
-        setResult(0);
+        setResult(RESULT_OK);
         finish();
     }
 
     public void onCancle(){
-        setResult(1);
+        setResult(RESULT_CANCELED);
         finish();
     }
 

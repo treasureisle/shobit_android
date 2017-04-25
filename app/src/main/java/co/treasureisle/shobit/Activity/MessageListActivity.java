@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import co.treasureisle.shobit.Adapter.MessageListAdapter;
-import co.treasureisle.shobit.Model.User;
+import co.treasureisle.shobit.Model.MessageList;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.VolleySingleTon;
@@ -29,7 +29,7 @@ public class MessageListActivity extends BaseActivity {
     private RecyclerView userList;
     private MessageListAdapter adapter;
 
-    private ArrayList<User> users;
+    private ArrayList<MessageList> messageLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,9 @@ public class MessageListActivity extends BaseActivity {
 
         userList = (RecyclerView)findViewById(R.id.user_list);
 
-        users = new ArrayList<>();
+        messageLists = new ArrayList<>();
 
-        adapter = new MessageListAdapter(this, users);
+        adapter = new MessageListAdapter(this, messageLists);
         GridLayoutManager layoutManager;
         layoutManager = new GridLayoutManager(this, 1);
         userList.setLayoutManager(layoutManager);
@@ -56,11 +56,11 @@ public class MessageListActivity extends BaseActivity {
             public void onResponse(JSONObject response) {
 
                 try {
-                    JSONArray userArray = response.getJSONArray("users");
+                    JSONArray messageListArray = response.getJSONArray("user_messages");
 
-                    for (int i = 0; i < userArray.length(); i++) {
-                        User user = new User(userArray.getJSONObject(i));
-                        users.add(user);
+                    for (int i = 0; i < messageListArray.length(); i++) {
+                        MessageList messgeList = new MessageList(messageListArray.getJSONObject(i));
+                        messageLists.add(messgeList);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

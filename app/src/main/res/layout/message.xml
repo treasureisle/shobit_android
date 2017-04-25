@@ -1,49 +1,50 @@
-<LinearLayout android:id="@+id/wrapper_profile"
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v4.widget.Space
-        android:layout_width="10dp"
-        android:layout_height="match_parent" />
-
-    <FrameLayout
-        android:layout_width="80dp"
-        android:layout_height="80dp">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/img_sellerpic"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"/>
-
-        <co.treasureisle.shobit.View.RoundedNetworkImageView
-            android:id="@+id/profile_thumbnail"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"/>
-    </FrameLayout>
-
-    <Space
-        android:layout_width="20dp"
-        android:layout_height="match_parent" />
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <co.treasureisle.shobit.Layout.RoundedCornerLayout
+        android:id="@+id/balloon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/username_text"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:gravity="center_vertical"/>
-        <TextView
-            android:id="@+id/message_text"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-    </LinearLayout>
+        android:background="@color/shobit_pink">
+        <co.treasureisle.shobit.Layout.RoundedCornerLayout
+            android:id="@+id/inner_balloon"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/message_text"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:text="안녕하세요 ㅁㅁ 제품에 관해서 질문드리고싶은게 있어서요"/>
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
+            </LinearLayout>
+
+        </co.treasureisle.shobit.Layout.RoundedCornerLayout>
+    </co.treasureisle.shobit.Layout.RoundedCornerLayout>
+
+
+</FrameLayout>

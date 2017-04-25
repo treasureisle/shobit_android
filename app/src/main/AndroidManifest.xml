@@ -73,6 +73,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.MessageActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PurchaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PurchaseListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SellListActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

@@ -8,6 +8,7 @@ public class PrefTag {
     public static final String NAME = "shobit";
     public static final String USER_ID = "user_id";
     public static final String ACCESS_TOKEN = "access_token";
+    public static final String MESSAGE_TIMESTAMP = "message_timestamp";
     public static final String APP_VERSION = "app_version";
 
     public static final String GCM_PREF = "gcm";

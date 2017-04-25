@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,10 +21,8 @@ import co.treasureisle.shobit.Adapter.CartAdapter;
 import co.treasureisle.shobit.Model.Basket;
 import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.R;
-import co.treasureisle.shobit.RecyclerItemClickListener;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.Utils;
-import co.treasureisle.shobit.ViewHolder.CartViewHolder;
 import co.treasureisle.shobit.VolleySingleTon;
 
 /**
@@ -47,7 +43,6 @@ public class CartActivity extends BaseActivity {
 
     public int numSelectedItems = 0;
     public int numTotalPrice = 0;
-    public int [] itemPrice;
     public boolean [] isSelecteidItem;
 
     public ArrayList<Basket> baskets = new ArrayList<>();
@@ -83,7 +78,7 @@ public class CartActivity extends BaseActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         listBasket.setLayoutManager(layoutManager);
         adapter = new CartAdapter(this, baskets);
-        listBasket.setItemViewCacheSize(30);
+        listBasket.setItemViewCacheSize(10);
         listBasket.setAdapter(adapter);
 
         getBaskets();
@@ -100,8 +95,6 @@ public class CartActivity extends BaseActivity {
                     baskets.clear();
                     isSelecteidItem = null;
                     isSelecteidItem = new boolean[basketArray.length()];
-                    itemPrice = null;
-                    itemPrice = new int[basketArray.length()];
 
                     for (int i = 0; i < basketArray.length(); i++) {
                         Basket basket = new Basket(basketArray.getJSONObject(i));
@@ -117,6 +110,23 @@ public class CartActivity extends BaseActivity {
         VolleySingleTon.getInstance(this).addToRequestQueue(req);
     }
 
+    public void recognizeTotalPrice() {
+        numTotalPrice = 0;
+        numSelectedItems = 0;
+        for (int i=0; i<baskets.size(); i++) {
+            if (isSelecteidItem[i]) {
+                numSelectedItems += 1;
+                Basket selectedBasket = baskets.get(i);
+                Post selectedPost = selectedBasket.getPost();
+                int itemPrice = (selectedPost.getPurchasePrice() + selectedPost.getFee());
+                int amount = selectedBasket.getAmount();
+                numTotalPrice += itemPrice * amount;
+            }
+        }
+        textNumSelectedItems.setText(numSelectedItems + " 아이템");
+        textTotalPrice.setText(Utils.numberFormat(numTotalPrice) + " 원");
+    }
+
     private void checkAll() {
         boolean isAllSelected = true;
         for (int i=0; i<baskets.size(); i++) {
@@ -126,18 +136,12 @@ public class CartActivity extends BaseActivity {
         }
 
         if (isAllSelected) {
-            for (int i=0; i<baskets.size(); i++) {
-                isSelecteidItem[i] = false;
-                numSelectedItems = 0;
-                textNumSelectedItems.setText("0 아이템");
-            }
+            for (int i=0; i<baskets.size(); i++) { isSelecteidItem[i] = false; }
         } else {
-            for (int i=0; i<baskets.size(); i++) {
-                isSelecteidItem[i] = true;
-                numSelectedItems = baskets.size();
-                textNumSelectedItems.setText(baskets.size() + " 아이템");
-            }
+            for (int i=0; i<baskets.size(); i++) { isSelecteidItem[i] = true; }
         }
+
+        recognizeTotalPrice();
 
         listBasket.getAdapter().notifyDataSetChanged();
 

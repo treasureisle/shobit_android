@@ -47,7 +47,6 @@ import co.treasureisle.shobit.VolleySingleTon;
 
 public class HomeActivity extends BaseActivity{
     private static final  String TAG = HomeActivity.class.getSimpleName();
-    private ArrayList<Post> mPosts;
     private ViewPager pager;
     private TabLayout tabLayout;
     private Button notificationButton;
@@ -65,7 +64,6 @@ public class HomeActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
-        mPosts = new ArrayList<>();
 
         notificationButton = (Button)findViewById(R.id.btn_notification);
         searchButton = (Button)findViewById(R.id.btn_search);
@@ -125,6 +123,13 @@ public class HomeActivity extends BaseActivity{
             }
         };
 
+        View.OnClickListener notificationListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+            }
+        };
+
         View.OnClickListener searchListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +143,7 @@ public class HomeActivity extends BaseActivity{
         cartButton.setOnClickListener(cartListener);
         profileButton.setOnClickListener(profileListener);
         searchButton.setOnClickListener(searchListener);
+        notificationButton.setOnClickListener(notificationListener);
 
         // Initializing the TabLayout
         tabLayout = (TabLayout) findViewById(R.id.sliding_menu);

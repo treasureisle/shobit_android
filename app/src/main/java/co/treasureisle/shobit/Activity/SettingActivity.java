@@ -13,8 +13,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import co.treasureisle.shobit.Constant.IntentTag;
+import co.treasureisle.shobit.Constant.RequestCode;
 import co.treasureisle.shobit.Model.User;
 import co.treasureisle.shobit.R;
+import co.treasureisle.shobit.SessionHelper;
+import co.treasureisle.shobit.Utils;
 
 /**
  * Created by pgseong on 2017. 4. 12..
@@ -66,5 +69,46 @@ public class SettingActivity  extends BaseActivity {
                 startActivity(i);
             }
         });
+
+        wrapperLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutPopup();
+            }
+        });
     }
+
+    private void showLogoutPopup() {
+
+        Intent i = new Intent(this, ShobitAlertActivity.class);
+        i.putExtra(IntentTag.ALERT_TITLE, "Shobit");
+        i.putExtra(IntentTag.ALERT_TEXT, "정말 로그아웃 하시겠습니까");
+        i.putExtra(IntentTag.ALERT_OK_TITLE, "로그아웃");
+        i.putExtra(IntentTag.ALERT_CANCLE_TITLE, "취소");
+
+        startActivityForResult(i, RequestCode.REQ_LOGOUT);
+    }
+
+    private void logout() {
+        SessionHelper sessionHelper = new SessionHelper(this);
+        sessionHelper.clearToken();
+        Utils.showToast(this, "로그아웃하였습니다. 첫화면으로 돌아갑니다.");
+        finish();
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RequestCode.REQ_LOGOUT:
+                if (resultCode == RESULT_OK) {
+                    logout();
+                }
+                break;
+        }
+
+    }
+
+
 }

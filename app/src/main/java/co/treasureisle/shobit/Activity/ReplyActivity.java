@@ -49,8 +49,6 @@ public class ReplyActivity extends BaseActivity implements RelativeLayoutDetectS
 
     public static final int COMMENT_ROW = 50;
 
-    public static final int REQUEST_CODE = 2;
-
     private EditText replyText;
 
     private String replyUrl;

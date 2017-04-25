@@ -7,6 +7,7 @@
     <color name="black">#000000</color>
 
     <color name="shobit_pink">#c84e4c</color>
+    <color name="shobit_pink_light">#eecccc</color>
     <color name="shobit_grey">#40656666</color>
     <color name="shobit_black">#030000</color>
     <color name="shobit_pink_dim">#ac3032</color>

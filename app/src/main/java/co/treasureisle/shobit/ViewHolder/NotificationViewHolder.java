@@ -28,7 +28,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
     private LinearLayout wrapperProfile;
     private NetworkImageView imgProfileThumb;
     private TextView textUsername;
-    private TextView textComment;
+    private TextView textMessage;
 
 
     public NotificationViewHolder(View itemView) {
@@ -37,7 +37,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
         wrapperProfile = (LinearLayout) itemView.findViewById(R.id.wrapper_profile);
         imgProfileThumb = (NetworkImageView) itemView.findViewById(R.id.profile_thumbnail);
         textUsername = (TextView) itemView.findViewById(R.id.username_text);
-        textComment = (TextView) itemView.findViewById(R.id.usercomment_text);
+        textMessage = (TextView) itemView.findViewById(R.id.message_text);
 
     }
 
@@ -61,7 +61,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
         });
 
         textUsername.setText(user.getUsername());
-        textComment.setText(user.getIntroduce());
+        textMessage.setText(notification.getMessage());
 
     }
 

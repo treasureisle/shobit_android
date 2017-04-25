@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import co.treasureisle.shobit.Adapter.HomeTabPagerAdapter;
+import co.treasureisle.shobit.Adapter.MessageAdapter;
 import co.treasureisle.shobit.Adapter.ProfileTabPagerAdapter;
 import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Constant.PrefTag;
@@ -46,6 +47,7 @@ public class ProfileActivity  extends BaseActivity {
     private ViewPager pager;
     private TabLayout tabLayout;
 
+    private Button notificationButton;
     private Button messageButton;
     private Button purchaseListButton;
     private Button settingButton;
@@ -72,6 +74,7 @@ public class ProfileActivity  extends BaseActivity {
         followers = new ArrayList<Follow>();
         followings = new ArrayList<Follow>();
 
+        notificationButton = (Button)findViewById(R.id.btn_notification);
         messageButton = (Button)findViewById(R.id.btn_message);
         purchaseListButton = (Button)findViewById(R.id.btn_purchase_list);
         settingButton = (Button)findViewById(R.id.btn_setting);
@@ -82,17 +85,24 @@ public class ProfileActivity  extends BaseActivity {
         followingText = (TextView)findViewById(R.id.following_text);
         followerText = (TextView)findViewById(R.id.follower_text);
 
+        View.OnClickListener notificationListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, NotificationActivity.class));
+            }
+        };
+
         View.OnClickListener messageListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SharedPreferences pref = Utils.getPrefs(ProfileActivity.this);
-//                userId = pref.getString(PrefTag.USER_ID, null);
-//                if (userId == null) {
-//                    startActivity(new Intent(ProfileActivity.this, LoginPopupActivity.class));
-//                } else {
-//                    startActivity(new Intent(ProfileActivity.this, FeedActivity.class));
-//                    finish();
-//                }
+                if (user.isMe()) {
+                    Intent i = new Intent(ProfileActivity.this, MessageListActivity.class);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(ProfileActivity.this, MessageActivity.class);
+                    i.putExtra(IntentTag.USER, user);
+                    startActivity(i);
+                }
             }
         };
 
@@ -125,6 +135,7 @@ public class ProfileActivity  extends BaseActivity {
             }
         };
 
+        notificationButton.setOnClickListener(notificationListener);
         messageButton.setOnClickListener(messageListener);
         purchaseListButton.setOnClickListener(purchaseListListener);
         settingButton.setOnClickListener(settingListener);
@@ -206,6 +217,7 @@ public class ProfileActivity  extends BaseActivity {
                         followButton.setVisibility(View.INVISIBLE);
                     } else {
                         fetchIsFollow();
+                        notificationButton.setVisibility(View.INVISIBLE);
                         settingButton.setVisibility(View.INVISIBLE);
                         purchaseListButton.setVisibility(View.INVISIBLE);
                     }

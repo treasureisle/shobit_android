@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import co.treasureisle.shobit.Model.MessageList;
 import co.treasureisle.shobit.Model.User;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.ViewHolder.MessageListViewHolder;
@@ -18,12 +19,12 @@ import co.treasureisle.shobit.ViewHolder.MessageListViewHolder;
 
 public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = MessageListAdapter.class.getSimpleName();
-    private ArrayList<User> users;
+    private ArrayList<MessageList> messageLists;
     private Activity activity;
 
-    public MessageListAdapter(Activity activity, ArrayList<User> users) {
+    public MessageListAdapter(Activity activity, ArrayList<MessageList> messageLists) {
         this.activity = activity;
-        this.users = users;
+        this.messageLists = messageLists;
     }
 
     @Override
@@ -36,18 +37,18 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MessageListViewHolder) {
-            User user = getUser(position);
-            ((MessageListViewHolder) holder).onBind(activity, user);
+            MessageList messageList = getMessageList(position);
+            ((MessageListViewHolder) holder).onBind(activity, messageList);
         }
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return messageLists.size();
     }
 
-    private User getUser(int position) {
-        return users.get(position);
+    private MessageList getMessageList(int position) {
+        return messageLists.get(position);
     }
 
 }

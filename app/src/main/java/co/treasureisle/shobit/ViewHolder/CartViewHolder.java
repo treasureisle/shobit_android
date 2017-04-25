@@ -39,7 +39,6 @@ import co.treasureisle.shobit.VolleySingleTon;
 public class CartViewHolder extends RecyclerView.ViewHolder {
     public static String TAG = CartViewHolder.class.getSimpleName();
 
-    private int index;
     private Basket basket;
 
     private CheckBox chkItem;
@@ -69,7 +68,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
     private void drawLayout(final CartActivity activity, final Basket basket, final int index) {
         this.activity = activity;
         this.basket = basket;
-        this.index = index;
         imgPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +98,6 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
                     activity.numTotalPrice-=(spnrAmount.getSelectedItemPosition() + 1) * itemPrice;
                     activity.isSelecteidItem[index] = false;
                 }
-
                 activity.textNumSelectedItems.setText(String.valueOf(activity.numSelectedItems) + " 아이템");
                 activity.textTotalPrice.setText(Utils.numberFormat(activity.numTotalPrice) + " 원");
             }
@@ -122,6 +119,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
                 spnrAmountAdapter.setDropDownViewResource(R.layout.spinner_item);
                 spnrAmount.setAdapter(spnrAmountAdapter);
 
+                spnrAmount.setSelection(basket.getAmount() - 1);
+
                 selectedColorSize = selColorSize;
             }
 
@@ -136,14 +135,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedAmount = position+1;
                 if(chkItem.isChecked()){
-                    Post selectedItem = basket.getPost();
-                    int itemPrice = (selectedItem.getPurchasePrice() + selectedItem.getFee()) * (spnrAmount.getSelectedItemPosition() + 1);
-                    activity.itemPrice[position] = itemPrice;
-                    activity.numTotalPrice = 0;
-                    for(int i=0; i<activity.baskets.size(); i++){
-                        activity.numTotalPrice+=activity.itemPrice[i];
-                    }
-                    activity.textTotalPrice.setText(Utils.numberFormat(activity.numTotalPrice) + " 원");
+                    activity.baskets.get(index).setAmount(selectedAmount);
+                    activity.recognizeTotalPrice();
                 }
             }
 
@@ -152,26 +145,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
-
-        if(activity.isSelecteidItem[index]){
-            chkItem.setChecked(true);
-            Post selectedItem = basket.getPost();
-            int itemPrice = (selectedItem.getPurchasePrice() + selectedItem.getFee()) * (spnrAmount.getSelectedItemPosition() + 1);
-            activity.itemPrice[index] = itemPrice;
-            activity.numTotalPrice = 0;
-            for(int i=0; i<activity.baskets.size(); i++){
-                activity.numTotalPrice+=activity.itemPrice[i];
-            }
-            activity.textTotalPrice.setText(Utils.numberFormat(activity.numTotalPrice) + " 원");
-        } else {
-            chkItem.setChecked(false);
-            activity.itemPrice[index] = 0;
-            activity.numTotalPrice = 0;
-            for(int i=0; i<activity.baskets.size(); i++){
-                activity.numTotalPrice+=activity.itemPrice[i];
-            }
-            activity.textTotalPrice.setText(Utils.numberFormat(activity.numTotalPrice) + " 원");
-        }
+        chkItem.setChecked(activity.isSelecteidItem[index]);
 
         fetchColorSize();
 
@@ -188,10 +162,17 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
                 try {
                     JSONArray postArray = response.getJSONArray("color_sizes");
 
+                    colorSizes.clear();
+                    colorSizeNames.clear();
+                    int colorsizeIndex = 0;
+
                     for (int i = 0; i < postArray.length(); i++) {
                         ColorSize colorSize = new ColorSize(postArray.getJSONObject(i));
                         colorSizes.add(colorSize);
                         colorSizeNames.add(colorSize.getName());
+                        if(colorSize.getName().equals(basket.getColorSize().getName())){
+                            colorsizeIndex = i;
+                        }
                     }
 
                     final ArrayAdapter<String> spnrColorSizeAdapter = new ArrayAdapter<>(
@@ -199,6 +180,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
                     spnrColorSizeAdapter.setDropDownViewResource(R.layout.spinner_item);
                     spnrColorSize.setAdapter(spnrColorSizeAdapter);
+                    spnrColorSize.setSelection(colorsizeIndex);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
