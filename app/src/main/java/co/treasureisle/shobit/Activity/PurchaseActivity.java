@@ -231,6 +231,9 @@ public class PurchaseActivity extends BaseActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             Utils.showToast(context, "주문이 성공적으로 완료되었습니다.");
+                            Intent intent = new Intent(context, HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         }
                     }, new com.android.volley.Response.ErrorListener() {
 
