@@ -109,6 +109,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
                 ColorSize selColorSize = colorSizes.get(position);
                 ArrayList<String> amountArray = new ArrayList<>();
 
+                activity.baskets.get(index).setColorSize(selColorSize);
+
                 for(int i=0; i<selColorSize.getAvailable(); i++){
                     amountArray.add(String.valueOf(i+1));
                 }

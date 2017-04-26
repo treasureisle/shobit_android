@@ -28,6 +28,11 @@ public class Session implements Parcelable {
         setAccessToken(src.readString());
     }
 
+    public Session(String uuid, String accessToken) {
+        this.uuid = uuid;
+        this.accessToken = accessToken;
+    }
+
     @Override
     public int describeContents() {
         return 0;

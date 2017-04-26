@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import co.treasureisle.shobit.Activity.PurchaseActivity;
 import co.treasureisle.shobit.Model.Order;
 import co.treasureisle.shobit.R;
-import co.treasureisle.shobit.ViewHolder.CartViewHolder;
 import co.treasureisle.shobit.ViewHolder.PurchaseViewHolder;
 
 /**
@@ -18,7 +17,7 @@ import co.treasureisle.shobit.ViewHolder.PurchaseViewHolder;
  */
 
 public class PurchaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final String TAG = DetailImageAdapter.class.getSimpleName();
+    public static final String TAG = PurchaseAdapter.class.getSimpleName();
 
     private PurchaseActivity mActivity;
     private ArrayList<Order> orders;
@@ -30,9 +29,9 @@ public class PurchaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mActivity).inflate(R.layout.cart, parent, false);
+        View v = LayoutInflater.from(mActivity).inflate(R.layout.purchase, parent, false);
 
-        return new CartViewHolder(v);
+        return new PurchaseViewHolder(v);
     }
 
     @Override

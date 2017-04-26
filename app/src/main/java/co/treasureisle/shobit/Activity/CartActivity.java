@@ -1,5 +1,6 @@
 package co.treasureisle.shobit.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +19,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import co.treasureisle.shobit.Adapter.CartAdapter;
+import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Model.Basket;
+import co.treasureisle.shobit.Model.Order;
 import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Request.ShobitRequest;
@@ -71,7 +74,21 @@ public class CartActivity extends BaseActivity {
         btnPurchaseAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "purchase touched");
+                purchasAll();
+            }
+        });
+
+        btnPurchaseItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                purchase();
+            }
+        });
+
+        btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
             }
         });
 
@@ -144,6 +161,29 @@ public class CartActivity extends BaseActivity {
         recognizeTotalPrice();
 
         listBasket.getAdapter().notifyDataSetChanged();
+
+    }
+
+    private void purchasAll() {
+        checkAll();
+        purchase();
+    }
+
+    private void purchase() {
+        ArrayList<Order> orders = new ArrayList<>();
+        for(int i = 0; i<isSelecteidItem.length; i++) {
+            if(isSelecteidItem[i]) {
+                Basket basket = baskets.get(i);
+                Order order = new Order(basket.getPost(), basket.getColorSize(), basket.getAmount());
+                orders.add(order);
+            }
+        }
+        Intent i = new Intent(this, PurchaseActivity.class);
+        i.putExtra(IntentTag.ORDERS, orders);
+        startActivity(i);
+    }
+
+    private void delete() {
 
     }
 }

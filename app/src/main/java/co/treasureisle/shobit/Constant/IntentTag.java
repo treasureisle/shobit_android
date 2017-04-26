@@ -4,6 +4,10 @@ package co.treasureisle.shobit.Constant;
  * Created by pgseong on 2017. 1. 24..
  */
 public class IntentTag {
+    public static final String PRICE = "price";
+
+    public static final String ORDERS  = "orders";
+
     public static final String FROM_PUSH = "from_push";
 
     public static final String API_URL = "api_url";

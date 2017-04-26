@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import co.treasureisle.shobit.Activity.HomeActivity;
 import co.treasureisle.shobit.Constant.PrefTag;
 import co.treasureisle.shobit.Model.Session;
 
@@ -40,6 +41,14 @@ public class SessionHelper {
         editor.apply();
 
         Log.d(TAG, "token saved");
+    }
+
+    public static Session getSession(Context context) {
+        SharedPreferences pref = Utils.getPrefs(context);
+        String userId = pref.getString(PrefTag.USER_ID, null);
+        String accessToken = pref.getString(PrefTag.ACCESS_TOKEN, null);
+        Session me = new Session(userId, accessToken);
+        return me;
     }
 
     public void clearToken() {
