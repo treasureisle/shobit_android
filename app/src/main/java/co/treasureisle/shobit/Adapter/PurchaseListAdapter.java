@@ -30,9 +30,9 @@ public class PurchaseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mActivity).inflate(R.layout.cart, parent, false);
+        View v = LayoutInflater.from(mActivity).inflate(R.layout.purchase_list, parent, false);
 
-        return new CartViewHolder(v);
+        return new PurchaseListViewHolder(v);
     }
 
     @Override

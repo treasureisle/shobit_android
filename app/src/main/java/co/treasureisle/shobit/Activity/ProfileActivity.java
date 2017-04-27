@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import co.treasureisle.shobit.Adapter.HomeTabPagerAdapter;
 import co.treasureisle.shobit.Adapter.MessageAdapter;
 import co.treasureisle.shobit.Adapter.ProfileTabPagerAdapter;
+import co.treasureisle.shobit.Adapter.PurchaseListAdapter;
 import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Constant.PrefTag;
 import co.treasureisle.shobit.Model.Follow;
@@ -109,13 +110,7 @@ public class ProfileActivity  extends BaseActivity {
         View.OnClickListener purchaseListListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SharedPreferences pref = Utils.getPrefs(HomeActivity.this);
-//                userId = pref.getString(PrefTag.USER_ID, null);
-//                if (userId == null) {
-//                    startActivity(new Intent(HomeActivity.this, LoginPopupActivity.class));
-//                } else {
-//                    startActivity(new Intent(HomeActivity.this, UploadActivity.class));
-//                }
+                startActivity(new Intent(ProfileActivity.this, PurchaseListActivity.class));
             }
         };
 

@@ -29,6 +29,7 @@ public class Purchase implements Parcelable {
     int deliveryCode;
     String deliveryNumber;
     String createdAt;
+    int isPaid;
 
     public static final Creator<Purchase> CREATOR = new Creator<Purchase>() {
         @Override
@@ -60,6 +61,8 @@ public class Purchase implements Parcelable {
             setDeliveryCode(o.getInt("delivery_code"));
             setDeliveryNumber(o.getString("delivery_number"));
             setCreatedAt(o.getString("created_at"));
+            setIsPaid(o.getInt("is_paid"));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,6 +85,7 @@ public class Purchase implements Parcelable {
         setDeliveryCode(src.readInt());
         setDeliveryNumber(src.readString());
         setCreatedAt(src.readString());
+        setIsPaid(src.readInt());
     }
 
     @Override
@@ -107,6 +111,7 @@ public class Purchase implements Parcelable {
         dest.writeInt(getDeliveryCode());
         dest.writeString(getDeliveryNumber());
         dest.writeString(getCreatedAt());
+        dest.writeInt(getIsPaid());
     }
 
     public int getId() {
@@ -235,5 +240,13 @@ public class Purchase implements Parcelable {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(int isPaid) {
+        this.isPaid = isPaid;
     }
 }

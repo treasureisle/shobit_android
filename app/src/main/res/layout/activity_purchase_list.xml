@@ -1,6 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:background="@drawable/shobit"
+            android:gravity="left|center_vertical" />
+
+        <Space
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="13"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_300"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_purchase_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="0dp"/>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_300"/>
+
+        </LinearLayout>
 </LinearLayout>
