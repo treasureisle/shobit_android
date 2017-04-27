@@ -1,16 +1,21 @@
 package co.treasureisle.shobit.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -28,11 +33,13 @@ import co.treasureisle.shobit.Adapter.HomeTabPagerAdapter;
 import co.treasureisle.shobit.Adapter.MessageAdapter;
 import co.treasureisle.shobit.Adapter.ProfileTabPagerAdapter;
 import co.treasureisle.shobit.Adapter.PurchaseListAdapter;
+import co.treasureisle.shobit.Adapter.SellListAdapter;
 import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Constant.PrefTag;
 import co.treasureisle.shobit.Model.Follow;
 import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.Model.User;
+import co.treasureisle.shobit.Model.UserDetail;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.Utils;
@@ -58,7 +65,7 @@ public class ProfileActivity  extends BaseActivity {
     private TextView followingText;
     private TextView followerText;
 
-    private User user;
+    private UserDetail user;
     private String userId;
     private ArrayList<Follow> followings;
     private ArrayList<Follow> followers;
@@ -110,7 +117,12 @@ public class ProfileActivity  extends BaseActivity {
         View.OnClickListener purchaseListListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, PurchaseListActivity.class));
+                if(user.getSellerLevel() == 0){
+                    startActivity(new Intent(ProfileActivity.this, PurchaseListActivity.class));
+                } else {
+                    showPurchaseListPopup();
+                }
+
             }
         };
 
@@ -194,13 +206,48 @@ public class ProfileActivity  extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void showPurchaseListPopup(){
+        final PopupWindow popup = new PopupWindow(purchaseListButton);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.popup_purchase_list, null);
+
+        Button btnPurchaseList = (Button) view.findViewById(R.id.btn_buy_list);
+        Button btnSellList = (Button) view.findViewById(R.id.btn_sell_list);
+
+        btnPurchaseList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+                startActivity(new Intent(ProfileActivity.this, PurchaseListActivity.class));
+            }
+        });
+
+        btnSellList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+                startActivity(new Intent(ProfileActivity.this, SellListActivity.class));
+            }
+        });
+
+
+        popup.setContentView(view);
+        popup.setWindowLayoutMode(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        popup.setTouchable(true);
+        popup.setFocusable(true);
+        popup.setOutsideTouchable(true);
+        popup.setBackgroundDrawable(new BitmapDrawable());
+        popup.showAsDropDown(purchaseListButton);
+
+    }
+
     private void fetchProfile() {
-        final ShobitRequest req = new ShobitRequest(this, Request.Method.GET, "/users/" + userId, new Response.Listener<JSONObject>() {
+        final ShobitRequest req = new ShobitRequest(this, Request.Method.GET, "/user_detail/" + userId, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
-                    user = new User(response.getJSONObject("user"));
+                    user = new UserDetail(response.getJSONObject("user_detail"));
 
                     ImageLoader imageLoader = VolleySingleTon.getInstance(ProfileActivity.this).getImageLoader();
                     profileThumbnail.setVisibility(View.VISIBLE);

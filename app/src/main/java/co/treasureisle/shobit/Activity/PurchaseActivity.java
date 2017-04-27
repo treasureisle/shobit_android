@@ -281,6 +281,5 @@ public class PurchaseActivity extends BaseActivity {
                 }
                 break;
         }
-
     }
 }

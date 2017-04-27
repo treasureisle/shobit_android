@@ -42,7 +42,6 @@ public class PurchaseListViewHolder extends RecyclerView.ViewHolder {
     public PurchaseListViewHolder(View itemView) {
         super(itemView);
         imgPreview = (NetworkImageView)itemView.findViewById(R.id.img_preview);
-        imgPreview = (NetworkImageView)itemView.findViewById(R.id.img_preview);
         textTitle = (TextView)itemView.findViewById(R.id.text_title);
         textPrice = (TextView)itemView.findViewById(R.id.text_price);
         textColorSize = (TextView)itemView.findViewById(R.id.text_colorsize);

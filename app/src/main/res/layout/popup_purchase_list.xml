@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn_sell_list"
+        android:layout_width="124dp"
+        android:layout_height="28dp"
+        android:text="판매목록"
+        android:background="@drawable/btn_popup_menu_top" />
+    <Button
+        android:id="@+id/btn_buy_list"
+        android:layout_width="124dp"
+        android:layout_height="28dp"
+        android:text="구매목록"
+        android:background="@drawable/btn_popup_menu_bottom"/>
+
+</LinearLayout>

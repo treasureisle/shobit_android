@@ -79,6 +79,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.SellListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.DeliveryPopupActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:screenOrientation="portrait"/>
 
     </application>
 
