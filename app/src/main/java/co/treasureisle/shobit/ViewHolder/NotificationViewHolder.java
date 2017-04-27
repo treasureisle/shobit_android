@@ -43,7 +43,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
 
     private void drawLayout(final Activity activity, final Notification notification) {
 
-        final User user = notification.getUser();
+        final User user = notification.getSender();
 
         ImageLoader imageLoader = VolleySingleTon.getInstance(activity).getImageLoader();
 

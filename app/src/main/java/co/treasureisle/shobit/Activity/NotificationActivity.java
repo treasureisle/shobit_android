@@ -1,15 +1,12 @@
 package co.treasureisle.shobit.Activity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +15,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import co.treasureisle.shobit.Adapter.NotificationAdapter;
-import co.treasureisle.shobit.Adapter.UserAdapter;
-import co.treasureisle.shobit.Constant.IntentTag;
-import co.treasureisle.shobit.Constant.PrefTag;
 import co.treasureisle.shobit.Model.Notification;
-import co.treasureisle.shobit.Model.Post;
-import co.treasureisle.shobit.Model.User;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.VolleySingleTon;

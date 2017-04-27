@@ -18,7 +18,7 @@ import co.treasureisle.shobit.ViewHolder.NotificationViewHolder;
  */
 
 public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final String TAG = PostThumbAdapter.class.getSimpleName();
+    public static final String TAG = NotificationAdapter.class.getSimpleName();
     private ArrayList<Notification> notifications;
     private Activity activity;
 
