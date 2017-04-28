@@ -23,6 +23,8 @@ import android.widget.PopupWindow;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +40,7 @@ import co.treasureisle.shobit.Model.Session;
 import co.treasureisle.shobit.R;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.SessionHelper;
+import co.treasureisle.shobit.ShobitFirebaseMessagingHelper;
 import co.treasureisle.shobit.Utils;
 import co.treasureisle.shobit.VolleySingleTon;
 
@@ -179,6 +182,10 @@ public class HomeActivity extends BaseActivity{
 
             }
         });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Log.e(TAG, "Firebase token: "+ token);
 
         tryLogin();
 

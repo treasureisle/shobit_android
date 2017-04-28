@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "79346731291",
+    "firebase_url": "https://shobit-db1fb.firebaseio.com",
+    "project_id": "shobit-db1fb",
+    "storage_bucket": "shobit-db1fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79346731291:android:8010fee3bdaa4e6d",
+        "android_client_info": {
+          "package_name": "co.treasureisle.shobit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79346731291-7ujlquben028588u7k7r6900rk32e76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXBJiO2mMvBHji5e4OBjdFIk_dz0_trig"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

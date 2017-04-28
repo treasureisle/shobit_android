@@ -11,10 +11,6 @@ import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 import org.acra.sender.HttpSender;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
-
-
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import co.treasureisle.shobit.Constant.PrefTag;
