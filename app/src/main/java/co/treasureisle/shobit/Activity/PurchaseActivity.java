@@ -1,6 +1,8 @@
 package co.treasureisle.shobit.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,6 +51,10 @@ import co.treasureisle.shobit.VolleySingleTon;
 public class PurchaseActivity extends BaseActivity {
     public static final String TAG = PurchaseActivity.class.getSimpleName();
 
+    int shobitPink;
+    int white;
+    int black;
+
     private ArrayList<Order> orders;
     private ArrayList<String> listAddress = new ArrayList<>();
     ArrayList<Address> addresses = new ArrayList<>();
@@ -86,6 +92,10 @@ public class PurchaseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        shobitPink = getResources().getColor(R.color.shobit_pink);
+        white = getResources().getColor(R.color.white);
+        black = getResources().getColor(R.color.black);
 
         setContentView(R.layout.activity_purchase);
 
@@ -156,19 +166,6 @@ public class PurchaseActivity extends BaseActivity {
         spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
         spnrAddress.setAdapter(spnrAddressAdapter);
 
-        spnrAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (addresses.size() == 0) return;
-                selectedAddr = addresses.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         textZipcode.setEnabled(false);
         textAddress.setEnabled(false);
         textAddress.setVisibility(View.INVISIBLE);
@@ -183,6 +180,82 @@ public class PurchaseActivity extends BaseActivity {
         adapter = new PurchaseAdapter(this, orders);
         listPurchase.setItemViewCacheSize(10);
         listPurchase.setAdapter(adapter);
+
+        btnSavedAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnSavedAddress.setBackgroundColor(shobitPink);
+                btnSavedAddress.setTextColor(white);
+                btnRecentAddress.setBackgroundColor(white);
+                btnRecentAddress.setTextColor(black);
+                btnNewAddress.setBackgroundColor(white);
+                btnNewAddress.setTextColor(black);
+                spnrAddress.setEnabled(false);
+                spnrAddress.setVisibility(View.INVISIBLE);
+                btnSearch.setEnabled(false);
+                btnSearch.setVisibility(View.INVISIBLE);
+                textZipcode.setEnabled(false);
+                textAddress.setEnabled(false);
+                textAddressDetail.setEnabled(false);
+                textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
+                textAddress.setVisibility(View.VISIBLE);
+                textAddress.setText(userDetail.getRecentAdd1());
+                textAddressDetail.setText(userDetail.getRecentAdd2());
+                textName.setText(userDetail.getRecentName());
+                textPhone.setText(userDetail.getRecentPhone());
+            }
+        });
+
+        btnRecentAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnSavedAddress.setBackgroundColor(white);
+                btnSavedAddress.setTextColor(black);
+                btnRecentAddress.setBackgroundColor(shobitPink);
+                btnRecentAddress.setTextColor(white);
+                btnNewAddress.setBackgroundColor(white);
+                btnNewAddress.setTextColor(black);
+                spnrAddress.setEnabled(false);
+                spnrAddress.setVisibility(View.INVISIBLE);
+                btnSearch.setEnabled(false);
+                btnSearch.setVisibility(View.INVISIBLE);
+                textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
+                textZipcode.setEnabled(false);
+                textAddress.setEnabled(false);
+                textAddressDetail.setEnabled(false);
+                textAddress.setVisibility(View.VISIBLE);
+                textAddress.setText(userDetail.getRecentAdd1());
+                textAddressDetail.setText(userDetail.getRecentAdd2());
+                textName.setText(userDetail.getRecentName());
+                textPhone.setText(userDetail.getRecentPhone());
+            }
+        });
+
+        btnNewAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnSearch.setEnabled(true);
+                btnSearch.setVisibility(View.VISIBLE);
+                btnSavedAddress.setBackgroundColor(white);
+                btnSavedAddress.setTextColor(black);
+                btnRecentAddress.setBackgroundColor(white);
+                btnRecentAddress.setTextColor(black);
+                btnNewAddress.setBackgroundColor(shobitPink);
+                btnNewAddress.setTextColor(white);
+                textZipcode.setEnabled(true);
+                textAddress.setVisibility(View.INVISIBLE);
+                spnrAddress.setVisibility(View.VISIBLE);
+                spnrAddress.setEnabled(true);
+                textAddressDetail.setEnabled(true);
+                textName.setEnabled(true);
+                textPhone.setEnabled(true);
+                textZipcode.setText("");
+                textAddress.setText("");
+                textAddressDetail.setText("");
+                textName.setText("");
+                textPhone.setText("");
+            }
+        });
 
         fetchAdress();
     }
@@ -217,6 +290,8 @@ public class PurchaseActivity extends BaseActivity {
                     if(Utils.isNullString(userDetail.getAddress1())){
                         btnSavedAddress.setEnabled(false);
                         if(Utils.isNullString(userDetail.getRecentAdd1())){
+                            btnNewAddress.setBackgroundColor(shobitPink);
+                            btnNewAddress.setTextColor(white);
                             btnRecentAddress.setEnabled(false);
                             textZipcode.setEnabled(true);
                             spnrAddress.setVisibility(View.VISIBLE);
@@ -229,6 +304,12 @@ public class PurchaseActivity extends BaseActivity {
                             textName.setText("");
                             textPhone.setText("");
                         } else {
+                            btnRecentAddress.setBackgroundColor(shobitPink);
+                            btnRecentAddress.setTextColor(white);
+                            btnSearch.setVisibility(View.INVISIBLE);
+                            btnSearch.setEnabled(false);
+                            spnrAddress.setEnabled(false);
+                            spnrAddress.setVisibility(View.INVISIBLE);
                             textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
                             textAddress.setVisibility(View.VISIBLE);
                             textAddress.setText(userDetail.getRecentAdd1());
@@ -237,6 +318,12 @@ public class PurchaseActivity extends BaseActivity {
                             textPhone.setText(userDetail.getRecentPhone());
                         }
                     } else {
+                        btnSavedAddress.setBackgroundColor(shobitPink);
+                        btnSavedAddress.setTextColor(white);
+                        btnSearch.setVisibility(View.INVISIBLE);
+                        btnSearch.setEnabled(false);
+                        spnrAddress.setEnabled(false);
+                        spnrAddress.setVisibility(View.INVISIBLE);
                         textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
                         textAddress.setVisibility(View.VISIBLE);
                         textAddress.setText(userDetail.getRecentAdd1());
@@ -287,12 +374,24 @@ public class PurchaseActivity extends BaseActivity {
                     spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
                     spnrAddress.setAdapter(spnrAddressAdapter);
 
+                    spnrAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            if (addresses.size() == 0) return;
+                            selectedAddr = addresses.get(position+1);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
                     spnrAddress.setEnabled(true);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                adapter.notifyDataSetChanged();
             }
         });
 

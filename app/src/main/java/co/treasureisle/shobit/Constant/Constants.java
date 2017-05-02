@@ -1,5 +1,7 @@
 package co.treasureisle.shobit.Constant;
 
+import android.graphics.Color;
+
 import co.treasureisle.shobit.R;
 
 /**

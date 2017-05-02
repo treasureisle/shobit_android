@@ -15,11 +15,13 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -27,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,12 +37,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import co.treasureisle.shobit.Constant.Constants;
 import co.treasureisle.shobit.Constant.IntentTag;
+import co.treasureisle.shobit.Model.Address;
 import co.treasureisle.shobit.Model.User;
 import co.treasureisle.shobit.Model.UserDetail;
 import co.treasureisle.shobit.R;
+import co.treasureisle.shobit.Request.AddressRequest;
 import co.treasureisle.shobit.Request.MultipartRequest;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.Utils;
@@ -57,6 +64,11 @@ public class AddressActivity extends BaseActivity{
     private static final int PICK_FROM_ALBUM = 1;
     private static final int CROP_FROM_IMAGE = 2;
 
+    private ArrayList<String> listAddress = new ArrayList<>();
+    ArrayList<Address> addresses = new ArrayList<>();
+    ArrayAdapter<String> spnrAddressAdapter;
+    private Address selectedAddr;
+
     private Uri mImageCaptureUri;
     private File imgData = null;
 
@@ -64,8 +76,9 @@ public class AddressActivity extends BaseActivity{
 
     private RoundedNetworkImageView imgProfileThumb;
     private EditText textName;
-    private EditText textPostalCode;
-    private EditText textAddress;
+    private EditText textSearch;
+    private Button btnSearch;
+    private Spinner spnrAddress;
     private EditText textAddressDetail;
     private EditText textPhone;
     private Button btnChangePassword;
@@ -77,16 +90,19 @@ public class AddressActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
+        listAddress.add("먼저 검색해주세요");
+
         user = getIntent().getParcelableExtra(IntentTag.USER);
 
         imgProfileThumb = (RoundedNetworkImageView)findViewById(R.id.img_profile_thumbnail);
         textName = (EditText)findViewById(R.id.text_name);
-        textPostalCode = (EditText)findViewById(R.id.text_postalcode);
-        textAddress = (EditText)findViewById(R.id.text_address);
+        textSearch = (EditText)findViewById(R.id.text_search);
+        spnrAddress = (Spinner) findViewById(R.id.spnr_address);
         textAddressDetail = (EditText)findViewById(R.id.text_address_detail);
         textPhone = (EditText)findViewById(R.id.text_phone);
         btnChangePassword = (Button)findViewById(R.id.btn_change_password);
         btnSave = (Button)findViewById(R.id.btn_save);
+        btnSearch = (Button)findViewById(R.id.btn_search);
 
         ImageLoader imageLoader = VolleySingleTon.getInstance(this).getImageLoader();
         imgProfileThumb.setVisibility(View.VISIBLE);
@@ -115,6 +131,18 @@ public class AddressActivity extends BaseActivity{
             }
         });
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchAddress(1);
+            }
+        });
+
+        spnrAddressAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, listAddress);
+
+        spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spnrAddress.setAdapter(spnrAddressAdapter);
+
         final ShobitRequest req = new ShobitRequest(this, Request.Method.GET, "/user_detail/" + user.getId(), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -122,8 +150,6 @@ public class AddressActivity extends BaseActivity{
                     UserDetail userDetail = new UserDetail(response.getJSONObject("user_detail"));
 
                     if (!(Utils.isNullString(userDetail.getName()))) { textName.setText(userDetail.getName()); }
-                    if (userDetail.getZipcode() != 0) { textPostalCode.setText(String.valueOf(userDetail.getZipcode())); }
-                    if (!(Utils.isNullString(userDetail.getAddress1()))) { textAddress.setText(userDetail.getAddress1()); }
                     if (!(Utils.isNullString(userDetail.getAddress2()))) { textAddressDetail.setText(userDetail.getAddress2()); }
                     if (!(Utils.isNullString(userDetail.getPhone()))) { textPhone.setText(userDetail.getPhone()); }
 
@@ -132,6 +158,64 @@ public class AddressActivity extends BaseActivity{
                 }
             }
         });
+        VolleySingleTon.getInstance(this).addToRequestQueue(req);
+
+    }
+
+    private void searchAddress(int page){
+        String url = Constants.ADDRESS_API_URL;
+        url = url + "?keyword=" + textSearch.getText().toString();
+        url = url + "&currentPage=" + page;
+        url = url + "&confmKey=" + Constants.ADDRESS_CONFIRM_KEY;
+        url = url + "&countPerPage=200";
+        url = url + "&resultType=json";
+
+        final AddressRequest req = new AddressRequest(this, Request.Method.GET, url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray addressArray = response.getJSONObject("results").getJSONArray("juso");
+
+                    listAddress.clear();
+                    listAddress.add("주소를 선택해주세요");
+
+                    for (int i = 0; i < addressArray.length(); i++) {
+                        Address address = new Address(addressArray.getJSONObject(i));
+                        addresses.add(address);
+                        String strAddr = address.getRoadAddrPart1() +
+                                        "\n지번주소: " + address.getJibunAddr() +
+                                        "\n우편변호: " + address.getZipNo();
+
+                        listAddress.add(strAddr);
+                    }
+
+                    spnrAddressAdapter = new ArrayAdapter<>(context, R.layout.spinner_item, listAddress);
+
+                    spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
+                    spnrAddress.setAdapter(spnrAddressAdapter);
+
+                    spnrAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            if (addresses.size() == 0) return;
+                            selectedAddr = addresses.get(position+1);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    spnrAddress.setEnabled(true);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         VolleySingleTon.getInstance(this).addToRequestQueue(req);
 
     }
@@ -293,14 +377,14 @@ public class AddressActivity extends BaseActivity{
             Log.e("TAG", "imgData null!");
         }
 
-        if(isEmpty(textName) || isEmpty(textPostalCode) || isEmpty(textAddress) || isEmpty(textAddressDetail) || isEmpty(textPhone)) {
+        if(selectedAddr == null || isEmpty(textName) || isEmpty(textAddressDetail) || isEmpty(textPhone)) {
             Utils.showToast(this, "완료되지 않은 항목이 존재합니다");
             return;
         }
 
         params.put("name", textName.getText().toString());
-        params.put("zipcode", textPostalCode.getText().toString());
-        params.put("address1", textAddress.getText().toString());
+        params.put("zipcode", selectedAddr.getZipNo() + "");
+        params.put("address1", selectedAddr.getRoadAddrPart1());
         params.put("address2", textAddressDetail.getText().toString());
         params.put("phone", textPhone.getText().toString());
 
