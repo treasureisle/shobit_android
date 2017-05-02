@@ -112,12 +112,20 @@ public class FeedActivity extends BaseActivity {
             }
         };
 
+        View.OnClickListener notificationListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FeedActivity.this, NotificationActivity.class));
+            }
+        };
+
         homeButton.setOnClickListener(homeListener);
         feedButton.setOnClickListener(feedListener);
         uploadButton.setOnClickListener(uploadListener);
         cartButton.setOnClickListener(cartListener);
         profileButton.setOnClickListener(profileListener);
         searchButton.setOnClickListener(searchListener);
+        notificationButton.setOnClickListener(notificationListener);
 
         // Initializing the TabLayout
         tabLayout = (TabLayout) findViewById(R.id.sliding_menu);

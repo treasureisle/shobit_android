@@ -165,6 +165,7 @@ public class FeedViewHolder  extends RecyclerView.ViewHolder {
         View.OnClickListener shareListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.showToast(activity, "아직 지원하지 않는 기능입니다");
             }
         };
 

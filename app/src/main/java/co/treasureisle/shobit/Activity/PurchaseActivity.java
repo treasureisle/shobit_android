@@ -6,9 +6,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -23,13 +26,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import co.treasureisle.shobit.Adapter.PurchaseAdapter;
+import co.treasureisle.shobit.Constant.Constants;
 import co.treasureisle.shobit.Constant.IntentTag;
 import co.treasureisle.shobit.Constant.RequestCode;
+import co.treasureisle.shobit.Model.Address;
 import co.treasureisle.shobit.Model.Order;
 import co.treasureisle.shobit.Model.Post;
 import co.treasureisle.shobit.Model.Session;
 import co.treasureisle.shobit.Model.UserDetail;
 import co.treasureisle.shobit.R;
+import co.treasureisle.shobit.Request.AddressRequest;
 import co.treasureisle.shobit.Request.MultipartRequest;
 import co.treasureisle.shobit.Request.ShobitRequest;
 import co.treasureisle.shobit.SessionHelper;
@@ -44,10 +50,13 @@ public class PurchaseActivity extends BaseActivity {
     public static final String TAG = PurchaseActivity.class.getSimpleName();
 
     private ArrayList<Order> orders;
+    private ArrayList<String> listAddress = new ArrayList<>();
+    ArrayList<Address> addresses = new ArrayList<>();
 
     private PurchaseAdapter adapter;
     private Session me;
     private UserDetail userDetail;
+    private Address selectedAddr;
     private int payment = 0; //0:카드 1:계좌이체 2:모바일
     private int totalPrice = 0;
     private boolean isPaid = false;
@@ -57,13 +66,17 @@ public class PurchaseActivity extends BaseActivity {
     Button btnSavedAddress;
     Button btnRecentAddress;
     Button btnNewAddress;
+    Button btnSearch;
 
-    TextView textZipcode;
-    TextView textAddress;
-    TextView textAddressDetail;
-    TextView textName;
-    TextView textPhone;
-    TextView textComment;
+    EditText textZipcode;
+    EditText textAddress;
+    Spinner spnrAddress;
+    ArrayAdapter<String> spnrAddressAdapter;
+
+    EditText textAddressDetail;
+    EditText textName;
+    EditText textPhone;
+    EditText textComment;
 
     CheckBox chkPolicy;
     Button btnCard;
@@ -75,6 +88,8 @@ public class PurchaseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_purchase);
+
+        listAddress.add("먼저 검색해주세요");
 
         me = SessionHelper.getSession(context);
 
@@ -93,12 +108,15 @@ public class PurchaseActivity extends BaseActivity {
         btnRecentAddress = (Button)findViewById(R.id.btn_recent_addr);
         btnNewAddress = (Button)findViewById(R.id.btn_new_addr);
 
-        textZipcode = (TextView)findViewById(R.id.text_zipcode);
-        textAddress = (TextView)findViewById(R.id.text_address);
-        textAddressDetail = (TextView)findViewById(R.id.text_address_detail);
-        textName = (TextView)findViewById(R.id.text_name);
-        textPhone = (TextView)findViewById(R.id.text_phone);
-        textComment = (TextView)findViewById(R.id.text_comment);
+        textZipcode = (EditText)findViewById(R.id.text_zipcode);
+        btnSearch = (Button)findViewById(R.id.btn_search);
+
+        textAddress = (EditText)findViewById(R.id.text_address);
+        spnrAddress = (Spinner)findViewById(R.id.spnr_address);
+        textAddressDetail = (EditText)findViewById(R.id.text_address_detail);
+        textName = (EditText)findViewById(R.id.text_name);
+        textPhone = (EditText)findViewById(R.id.text_phone);
+        textComment = (EditText)findViewById(R.id.text_comment);
 
         chkPolicy = (CheckBox)findViewById(R.id.chk_policy);
         btnCard = (Button)findViewById(R.id.btn_card);
@@ -126,8 +144,36 @@ public class PurchaseActivity extends BaseActivity {
             }
         });
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchAddress(1);
+            }
+        });
+
+        spnrAddressAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, listAddress);
+
+        spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spnrAddress.setAdapter(spnrAddressAdapter);
+
+        spnrAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (addresses.size() == 0) return;
+                selectedAddr = addresses.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         textZipcode.setEnabled(false);
         textAddress.setEnabled(false);
+        textAddress.setVisibility(View.INVISIBLE);
+        spnrAddress.setEnabled(false);
+        spnrAddress.setVisibility(View.INVISIBLE);
         textAddressDetail.setEnabled(false);
         textName.setEnabled(false);
         textPhone.setEnabled(false);
@@ -173,7 +219,7 @@ public class PurchaseActivity extends BaseActivity {
                         if(Utils.isNullString(userDetail.getRecentAdd1())){
                             btnRecentAddress.setEnabled(false);
                             textZipcode.setEnabled(true);
-                            textAddress.setEnabled(true);
+                            spnrAddress.setVisibility(View.VISIBLE);
                             textAddressDetail.setEnabled(true);
                             textName.setEnabled(true);
                             textPhone.setEnabled(true);
@@ -184,6 +230,7 @@ public class PurchaseActivity extends BaseActivity {
                             textPhone.setText("");
                         } else {
                             textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
+                            textAddress.setVisibility(View.VISIBLE);
                             textAddress.setText(userDetail.getRecentAdd1());
                             textAddressDetail.setText(userDetail.getRecentAdd2());
                             textName.setText(userDetail.getRecentName());
@@ -191,6 +238,7 @@ public class PurchaseActivity extends BaseActivity {
                         }
                     } else {
                         textZipcode.setText(String.valueOf(userDetail.getRecentZipcode()));
+                        textAddress.setVisibility(View.VISIBLE);
                         textAddress.setText(userDetail.getRecentAdd1());
                         textAddressDetail.setText(userDetail.getRecentAdd2());
                         textName.setText(userDetail.getRecentName());
@@ -206,6 +254,52 @@ public class PurchaseActivity extends BaseActivity {
         VolleySingleTon.getInstance(this).addToRequestQueue(req);
     }
 
+    private void searchAddress(int page){
+        String url = Constants.ADDRESS_API_URL;
+        url = url + "?keyword=" + textZipcode.getText().toString();
+        url = url + "&currentPage=" + page;
+        url = url + "&confmKey=" + Constants.ADDRESS_CONFIRM_KEY;
+        url = url + "&countPerPage=200";
+        url = url + "&resultType=json";
+
+        final AddressRequest req = new AddressRequest(this, Request.Method.GET, url, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray addressArray = response.getJSONObject("results").getJSONArray("juso");
+
+                    listAddress.clear();
+                    listAddress.add("주소를 선택해주세요");
+
+                    for (int i = 0; i < addressArray.length(); i++) {
+                        Address address = new Address(addressArray.getJSONObject(i));
+                        addresses.add(address);
+                        String strAddr =
+                                "우편변호: " + address.getZipNo() +
+                                "\n도로명주소: " + address.getRoadAddrPart1() +
+                                "\n지번주소: " + address.getJibunAddr();
+                        listAddress.add(strAddr);
+                    }
+
+                    spnrAddressAdapter = new ArrayAdapter<>(context, R.layout.spinner_item, listAddress);
+
+                    spnrAddressAdapter.setDropDownViewResource(R.layout.spinner_item);
+                    spnrAddress.setAdapter(spnrAddressAdapter);
+
+                    spnrAddress.setEnabled(true);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        VolleySingleTon.getInstance(this).addToRequestQueue(req);
+
+    }
+
     private void purchase(){
         for(int i=0; i<orders.size(); i++) {
             Order order = orders.get(i);
@@ -219,8 +313,8 @@ public class PurchaseActivity extends BaseActivity {
             params.put("price", String.valueOf(price));
             params.put("payment", String.valueOf(payment));
             params.put("name", textName.getText().toString());
-            params.put("zipcode", textZipcode.getText().toString());
-            params.put("address1", textAddress.getText().toString());
+            params.put("zipcode", selectedAddr.getZipNo() + "");
+            params.put("address1", selectedAddr.getRoadAddrPart1());
             params.put("address2", textAddressDetail.getText().toString());
             params.put("phone", textPhone.getText().toString());
             params.put("comment", textComment.getText().toString());

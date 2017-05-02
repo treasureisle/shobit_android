@@ -7,6 +7,10 @@ import co.treasureisle.shobit.R;
  */
 
 public class Constants {
+    public static final String ADDRESS_API_URL = "http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do";
+
+    public static final String ADDRESS_CONFIRM_KEY = "U01TX0FVVEgyMDE3MDEyMDE0MTkxMjE4NDcx";
+
     public static final int SWIPE_REFRESH_START_OFFSET = 92;
 
     public static final int SWIPE_REFRESH_END_OFFSET = 120;

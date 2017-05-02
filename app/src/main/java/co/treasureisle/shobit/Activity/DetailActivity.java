@@ -166,7 +166,7 @@ public class DetailActivity extends BaseActivity {
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Utils.showToast(DetailActivity.this, "아직 지원하지 않는 기능입니다");
             }
         });
 
